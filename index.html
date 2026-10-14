@@ -38,7 +38,33 @@
       </nav>
     </header>
 
-    <main></main>
+    <main class="container flex-grow-1 my-5">
+      <header class="d-flex align-items-center gap-4 border-bottom">
+        <h1 class="w-100">Suas Tarefas</h1>
+
+        <div class="input-group">
+          <input
+            id="add-input"
+            type="text"
+            class="form-control"
+            placeholder="Descrição da Tarefa"
+            aria-label="Descrição da Tarefa"
+          />
+
+          <div class="input-group-append">
+            <button
+              id="add-btn"
+              class="btn btn-outline-secondary rounded-start-0"
+              type="button"
+            >
+              <i class="bi bi-plus-circle"></i>
+
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </header>
+    </main>
 
     <footer class="bg-secondary-subtle">
       <p class="container text-center py-1 mb-0">
