@@ -19,6 +19,17 @@ function addItem() {
   todoList.insertAdjacentHTML(
     "beforeend",
     `<li id="todo-item-${index}" class="input-group">
+      <button
+        id="todo-check-btn-${index}"
+        class="todo-check-btn btn btn-outline-secondary"
+        type="button"
+        title="Marcar como concluída"
+        aria-label="Marcar tarefa como concluída"
+        aria-pressed="false"
+      >
+        <i class="bi bi-check-lg"></i>
+      </button>
+
       <input
         id="todo-input-${index}"
         type="text"
@@ -50,6 +61,11 @@ function addItem() {
     </li>`,
   );
 
+  const checkButton = document.querySelector(`#todo-check-btn-${index}`);
+  checkButton.addEventListener("click", (e) =>
+    toggleItem(document.querySelector(`#todo-input-${index}`), checkButton),
+  );
+
   const editButton = document.querySelector(`#todo-edit-btn-${index}`);
   editButton.addEventListener("click", (e) =>
     editItem(
@@ -64,6 +80,21 @@ function addItem() {
   );
 
   addInput.value = "";
+}
+
+function toggleItem(input, button) {
+  const checked = button.getAttribute("aria-pressed") !== "true";
+
+  button.setAttribute("aria-pressed", String(checked));
+  button.classList.toggle("btn-success", checked);
+  button.classList.toggle("btn-outline-secondary", !checked);
+  button.title = checked ? "Marcar como pendente" : "Marcar como concluída";
+  button.setAttribute(
+    "aria-label",
+    checked ? "Marcar tarefa como pendente" : "Marcar tarefa como concluída",
+  );
+
+  input.classList.toggle("text-decoration-line-through", checked);
 }
 
 function editItem(input, button) {
