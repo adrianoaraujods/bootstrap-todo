@@ -111,6 +111,10 @@ function editItem(input, button) {
 function deleteItem(item) {
   if (!item) return;
 
+  confirm(
+    "Você tem certeza que quer excluir essa tarefa? Essa ação não pode ser desfeita.",
+  );
+
   item.remove();
 }
 
