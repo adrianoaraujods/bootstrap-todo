@@ -50,12 +50,31 @@ function addItem() {
     </li>`,
   );
 
+  const editButton = document.querySelector(`#todo-edit-btn-${index}`);
+  editButton.addEventListener("click", (e) =>
+    editItem(
+      document.querySelector(`#todo-input-${index}`),
+      document.querySelector(`#todo-edit-btn-${index}`),
+    ),
+  );
+
   const deleteButton = document.querySelector(`#todo-delete-btn-${index}`);
   deleteButton.addEventListener("click", (e) =>
     deleteItem(document.querySelector(`#todo-item-${index}`)),
   );
 
   addInput.value = "";
+}
+
+function editItem(input, button) {
+  if (input.hasAttribute("readonly")) {
+    button.innerHTML = `<i class="bi bi-floppy"></i>`;
+    input.removeAttribute("readonly");
+    input.focus();
+  } else {
+    button.innerHTML = `<i class="bi bi-pencil"></i>`;
+    input.setAttribute("readonly", "");
+  }
 }
 
 function deleteItem(item) {
